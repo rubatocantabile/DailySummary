@@ -48,4 +48,14 @@ router.delete('/:postId',
    )
 });
 
+//POST
+router.post('/',
+(req, res) => {
+  console.log(req)
+  res.json(
+    {   
+    }
+   )
+});
+
 module.exports = router;

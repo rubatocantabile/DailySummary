@@ -33,14 +33,14 @@ class App extends Component {
   onCollapse = (collapsed) => {
     console.log(collapsed)
     this.setState({ collapsed })
-   
   }
 
   pickedMonth = (date, dateString) => {
     const dateStr = dateString.replace(/-/g, '');
-    this.props.history.push({
-      pathname: '/post',
-    });
+    const url = '/posts/' + dateStr.substring( 0, 4 ) + 
+                '/' + dateStr.substring( 4, 6 );
+    console.log(url);
+    this.props.history.push(url);
   }
 
   pickedDate = (date, dateString) => {
@@ -114,11 +114,9 @@ class App extends Component {
                 }
               >              
                 <Menu.Item key="2">
-                  <Link to="/post">
                     <MonthPicker 
                       onChange={this.pickedMonth}
                       placeholder="Select month" />                  
-                  </Link> 
                 <span className="nav-text"></span>
                 </Menu.Item>            
               </SubMenu>              
@@ -168,17 +166,16 @@ class App extends Component {
             <Content className="Content-section-layout one-content">
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route path="/posts/:year/:month/:day" component={PostList} />
+                <Route path="/posts/:year/:month" component={PostList} />
+                <Route path="/posts/:year" component={PostList} />
+                <Route path="/posts" component={PostList} />           
                 <Route path="/post/write" component={Write} />
                 <Route path="/post/:view" component={Review} />
-                <Route path="/post" component={PostList} />           
                 <Route path="/login" component={NormalLoginForm} />
                 <Route path="/setting" component={Settings} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/unsubscribe" component={Unsubscribe} />              
-                {/* 읽기 기능 구현 후 추가 예정
-                <Route path="/post/:year/:month/:day" component={Post} />
-                <Route path="/post/:year/:month" component={} />
-                <Route path="/post/:year" component={} /> */}
                 <Route component={NotFound} />
               </Switch>
             </Content>

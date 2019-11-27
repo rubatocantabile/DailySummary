@@ -24,12 +24,13 @@ class PostsList extends Component {
   }
 
   fetchData = () => {
-    //const date = this.props.location.state.date;
+    const year = this.props.match.params.year;
+    const month = this.props.match.params.month;
+    //const day = this.props.match.params.day;
     var url = 'http://localhost:9000/api/posts/';
-    console.log(this.props);
-    //url += (date.length >= 4 ? date.substring( 0, 4 ) + '/' : '');
-    //url += (date.length >= 6 ? date.substring( 4, 6 ) + '/' : '');
-    //url += (date.length >= 8 ? date.substring( 6, 8 ) + '/' : '');
+    url += year !== '' ? year + '/' : '';
+    url += month !== '' ? month + '/' : '';
+    //url += day == '' ? day + '/' : '';
     console.log(url);
     axios.get(url)
     .then((response) => {
