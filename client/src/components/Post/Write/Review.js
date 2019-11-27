@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'antd';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 class Review extends Component {
-  state = {
-    value: '',
-    visible: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: '',
+      visible: false,
+    };
+  }
   
   showModal = () => {
     this.setState({
@@ -15,11 +19,19 @@ class Review extends Component {
   };
 
   handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
+    const postId = this.props.match.params.view;
+    axios.delete('http://localhost:9000/api/posts/' + postId)
+    .then((response) => {
+      alert("삭제되었습니다!")
+      this.setState({
+        visible: false,
+      });
+      this.props.history.goBack()
+      })
+    .catch((error) => {
+      console.error(error)
+    })
+  }
 
   handleCancel = e => {
     console.log(e);
@@ -32,6 +44,17 @@ class Review extends Component {
     
   }
 
+  componentDidMount = () => {
+    const postId = this.props.match.params.view;
+    axios.get('http://localhost:9000/api/posts/' + postId)
+    .then((response) => {
+      console.log(response);
+      this.setState({
+        data: response.data,
+      });
+    })
+  }
+
   render() {
 
     return (
@@ -40,14 +63,14 @@ class Review extends Component {
           <p className="one-selected-date flex"
             // type="date"           
           >
-          일기 쓴 날짜가 보여질 예정입니다.          
+          {this.state.data.createdDt}
           </p>
           <div className="one-selected-emotion flex" type="input">
-            감정
+            {this.state.data.affectivity}
           </div>
         </div>
         <p className="one-selected-textarea"> 
-          쓴 글이 불려질 예정입니다.
+          {this.state.data.paragraph}
         </p>
       
         <div className="one-selected-btnContainer flex">

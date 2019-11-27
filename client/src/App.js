@@ -12,8 +12,6 @@ import Settings from './components/Settings'
 import SignUp from './components/Login/SignUp'
 import Unsubscribe from './components/Login/Unsubscribe'
 import Review from './components/Post/Write/Review'
-import axios from 'axios'
-
 
 const { Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
@@ -38,12 +36,19 @@ class App extends Component {
    
   }
 
+  pickedMonth = (date, dateString) => {
+    const dateStr = dateString.replace(/-/g, '');
+    this.props.history.push({
+      pathname: '/post',
+    });
+  }
+
   pickedDate = (date, dateString) => {
     dateString = Number(dateString.replace(/-/g, ''));
     
     this.props.history.push({
       pathname: '/post/write',
-      state: {date: dateString}
+      state: {date: dateString},
     });
   }
   // onChange(event)  {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon, DatePicker, Button } from 'antd';
-// import './Home.css'
-import axios from 'axios';
-const { Header, Content } = Layout;
+import { Button } from 'antd';
+// import axios from 'axios';
+// const { Header, Content } = Layout;
 
 
 const randomTxt = () => {

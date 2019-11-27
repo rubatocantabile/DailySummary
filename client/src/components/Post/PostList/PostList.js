@@ -1,36 +1,43 @@
 import React, { Component } from 'react';
 import { List, message, Spin } from 'antd';
-import reqwest from 'reqwest';
+import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
 
-const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
+//const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 
 class PostsList extends Component {
-  state = {
-    data: [],
-    loading: false,
-    hasMore: true,
-    date: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: false,
+      hasMore: true,
+    };
+  }
 
   componentDidMount() {
     this.fetchData(res => {
       this.setState({
-        data: res.results,
+        data: res,
       });
     });
   }
 
-  fetchData = callback => {
-    reqwest({
-      url: fakeDataUrl,
-      type: 'json',
-      method: 'get',
-      contentType: 'application/json',
-      success: res => {
-        callback(res);
-      },
-    });
+  fetchData = () => {
+    //const date = this.props.location.state.date;
+    var url = 'http://localhost:9000/api/posts/';
+    console.log(this.props);
+    //url += (date.length >= 4 ? date.substring( 0, 4 ) + '/' : '');
+    //url += (date.length >= 6 ? date.substring( 4, 6 ) + '/' : '');
+    //url += (date.length >= 8 ? date.substring( 6, 8 ) + '/' : '');
+    console.log(url);
+    axios.get(url)
+    .then((response) => {
+      console.log(response);
+      this.setState({
+        data: response.data,
+      });
+    })
   };
 
   handleInfiniteOnLoad = () => {
@@ -47,7 +54,7 @@ class PostsList extends Component {
       return;
     }
     this.fetchData(res => {
-      data = data.concat(res.results);
+      data = data.concat(res);
       this.setState({
         data,
         loading: false,
@@ -57,9 +64,9 @@ class PostsList extends Component {
   
   renderItem = (item) => {
     return (
-      <List.Item key={item.id}>
-        <List.Item.Meta title={<a href="https://ant.design">{item.name.last}</a>} description={this.state.date} className="list-item-wrap" />
-        <div>Content</div>
+      <List.Item key={item.postId}>
+        <List.Item.Meta title={<a href={"/post/"+item.postId}>{item.createdDt}</a>} className="list-item-wrap" />
+        <div>{item.paragraph}</div>
       </List.Item>
     );
   }

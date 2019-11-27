@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-// import './index.css';
 import { Input, Button, Modal } from 'antd';
 import LiveClock from './LiveClock';
 import Emotion from './Emotion';
 import { withRouter } from 'react-router';
-import axios from 'axios';
+// import axios from 'axios';
 
 const { TextArea } = Input;
 
