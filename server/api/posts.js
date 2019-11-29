@@ -4,7 +4,7 @@ const knex = require('knex');
 const cors = require('cors');
 const app = express();
 
-//index
+//Index
 router.get('/',
   (req, res, next) => {
     res.json([
@@ -42,7 +42,7 @@ router.get('/:postId',
 //DELETE
 router.delete('/:postId',
 (req, res) => {
-  res.json(
+  res.json( 
     {
     }
    )

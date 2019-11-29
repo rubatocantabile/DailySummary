@@ -6,14 +6,9 @@ class Emotion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      affectivity : 0
+      affectivity : ""
     }
-  }
-
-  btnClicked = (emotion) => {
-    this.setState({
-      affectivity: emotion
-    })
+    
   }
 
   render() {
@@ -21,20 +16,19 @@ class Emotion extends Component {
       <div className="App-Content-Emotion">
         <p>오늘 기분은??</p>
         <div className='iconList' style={{ padding: 5, background: '#fff', minHeight: 20}}>
-{/* 선택한 이모티콘에 value를 넣고, 저장되도록 설정해야 함 */}
-          <Button onClick={this.btnClicked(1)}>
+          <Button value={4} onClick={this.props.clickHandler}>
             <Icon type="like" />
           </Button>
-          <Button onClick={this.btnClicked(2)}>
+          <Button value={3} onClick={this.props.clickHandler}>
             <Icon type="smile" />
           </Button>         
-          <Button onClick={this.btnClicked(3)}>
+          <Button value={2} onClick={this.props.clickHandler}>
            <Icon type="meh" />
           </Button>
-          <Button onClick={this.btnClicked(4)}>
+          <Button value={1} onClick={this.props.clickHandler}>
             <Icon type="frown" />
           </Button>         
-          <Button onClick={this.btnClicked(5)}>
+          <Button value={0} onClick={this.props.clickHandler}>
             <Icon type="dislike" />
           </Button>        
         </div>
@@ -44,3 +38,38 @@ class Emotion extends Component {
 }
 
 export default Emotion
+
+// import React, { Component } from 'react'
+// import { Button, Icon } from 'antd'
+// import axios from 'axios';
+
+// class Emotion extends Component {
+  
+
+//   render() {
+//     return(
+//       <div className="App-Content-Emotion">
+//         <p>오늘 기분은??</p>
+//         <div className='iconList' style={{ padding: 5, background: '#fff', minHeight: 20}}>
+//           <Button >
+//             <Icon type="like" />
+//           </Button>
+//           <Button >
+//             <Icon type="smile" />
+//           </Button>         
+//           <Button >
+//            <Icon type="meh" />
+//           </Button>
+//           <Button >
+//             <Icon type="frown" />
+//           </Button>         
+//           <Button >
+//             <Icon type="dislike" />
+//           </Button>        
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+
+// export default Emotion

@@ -10,6 +10,9 @@ app.use(cors());
 
 // api 
 app.use('/api/posts', require('./api/posts'));
+app.use('/api/summary', require('./api/summary'));
+
+
 
 // server 띄우기
 const port = 9000;

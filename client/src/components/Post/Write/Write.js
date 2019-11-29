@@ -14,8 +14,10 @@ class Write extends Component {
     this.state = {
       visible: false,
       paragraph: "",
+      affectivity: "",
     }
     this.paragraphChanged = this.paragraphChanged.bind(this)
+    this.selectedEmotion = this.selectedEmotion.bind(this)
   }  
   
   showModal = () => {
@@ -65,6 +67,14 @@ class Write extends Component {
   }
 
 
+  selectedEmotion(e) {
+    const affectivity = e.target.value
+    console.log(e)
+    this.setState({
+      affectivity: this.state.value 
+    })
+  }
+
   render() {
 
     return (
@@ -77,7 +87,7 @@ class Write extends Component {
           value={this.state.paragraph}
           onChange={this.paragraphChanged}  />
         <div className="one-post-btn-container flex">
-          <Emotion />
+          <Emotion clickHandler={this.selectedEmotion}/>
           <Button type="primary" onClick={this.showModal} className="btn btn-submit">저장</Button>
           <Modal title="글이 완성되었습니다." visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} >
 {/*  리뷰 페이지로 이동 */}

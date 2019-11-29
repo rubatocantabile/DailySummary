@@ -95,8 +95,10 @@ class App extends Component {
               console.log(collapsed, type)
             }}
             className="one-sidebar"
-          >
-            {/* <div className="logo" /> */}
+          >          
+            <div className="logo">
+             <HeaderLayout className="app-logo-header"/>
+            </div>
             <Menu theme="light" mode="inline" className="one-nav">
               <Menu.Item key="1">
                 <Link to="/post/write">

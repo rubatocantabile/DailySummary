@@ -47,30 +47,58 @@
   height: 100vh;
   background-color: #fff;
 }
+
 @import url('https://fonts.googleapis.com/css?family=Stylish&display=swap');
 
-// @font-face
-// {
-//     src: url("./DX.ttf");
-//     font-family: "DX";
-// }
+.logo {
+  font-size: 30px;   
+  display: block;
+  color: black;
+  font-family: 'Stylish', sans-serif;
+  }
+
+@media screen and (min-width:1090px) {  
+.logo {
+  font-size: 30px;   
+  display: none;
+  color: black;
+  font-family: 'Stylish', sans-serif;
+  }
+};
+
 .one-header {
   background-color: #f0f2f5;
+  display: none;  
+    .one-logo {  
+      font-size: 50px;        
+      span {
+        cursor: pointer;
+        color: black;
+        font-family: 'Stylish', sans-serif;
+        :hover{
+          transform: scale(1.5,1.5);
+        }
+      } 
+    }  
+  } 
 
-  .one-logo {  
-      font-size: 50px; 
-
-    span {
-      cursor: pointer;
-      color: black;
-      font-family: 'Stylish', sans-serif;
-
-      :hover{
-        transform: scale(1.5,1.5);
-      }
+@media screen and (max-width:1090px) {  
+  .one-header {
+    display: block;
+    background-color: #f0f2f5;  
+      .one-logo {  
+        font-size: 50px;        
+        span {
+          cursor: pointer;
+          color: black;
+          font-family: 'Stylish', sans-serif;
+          :hover{
+            transform: scale(1.5,1.5);
+          }
+        } 
+      }  
     } 
-  }  
-}
+};
 
 .one-welcome {
   overflow: hidden;
