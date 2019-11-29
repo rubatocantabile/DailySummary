@@ -12,8 +12,8 @@ router.get('/',
        "postId": "1",
        "paragraph": "오늘의 일기는 이러쿵 저러쿵 조로콩콩콩",
        "affectivity": "쏘쏘",
-       "createdDt": "2019-11-28, 22:00",
-       "modifiedDt": "2019-11-28, 23:00"
+       "createdDt": "2019-11-28 22:00",
+       "modifiedDt": "2019-11-28 23:00"
       },
       {
        "postId": "2",

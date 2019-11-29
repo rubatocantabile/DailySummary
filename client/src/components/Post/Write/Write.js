@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import axios from 'axios';
 
 const { TextArea } = Input;
+const config = require('../../../config');
 
 class Write extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Write extends Component {
   //   })
   // };
   handleOk = e => { 
-    axios.post("http://localhost:9000/api/posts", {
+    axios.post(config.serverUrl + "/api/posts", {
       paragraph: this.state.paragraph,
       affectivity: this.state.affectivity,
     })

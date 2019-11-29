@@ -12,6 +12,7 @@ import Settings from './components/Settings'
 import SignUp from './components/Login/SignUp'
 import Unsubscribe from './components/Login/Unsubscribe'
 import Review from './components/Post/Write/Review'
+import Summary from './components/Post/Summary/Summary'
 
 const { Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
@@ -176,6 +177,7 @@ class App extends Component {
                 <Route path="/posts" component={PostList} />           
                 <Route path="/post/write" component={Write} />
                 <Route path="/post/:view" component={Review} />
+                <Route path="/summary" component={Summary} />
                 <Route path="/login" component={NormalLoginForm} />
                 <Route path="/setting" component={Settings} />
                 <Route path="/signup" component={SignUp} />

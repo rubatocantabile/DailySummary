@@ -262,7 +262,7 @@
 
 }
 
-.one-selected-review {
+.one-selected-review , .one-selected-summary{
   height: 100%;
   padding: 9% 7%;
   clear: both;
@@ -273,20 +273,22 @@
 
     .one-selected-date {
       width: 40%; 
+      height: 5vh;
       display: inline-block;
-      background: #ebf8f2;
+      background: #e8f8f1;
       border-radius: 20px;
     } 
     .one-selected-emotion {
       display: inline-block;
       border: 1em;
+      width: 5vh;
+      height: 5vh;
       border-radius: 50px;
-      margin: 0.3em;
-      background: rgb(215, 215, 248);
+      background: rgb(210, 224, 236);
     }   
   }
   .one-selected-textarea {
-    height: 100%;
+    height: 80%;
     margin-bottom: 1.5em;
     border-radius: 20px;
     border-color: rgb(243, 200, 200);
@@ -295,8 +297,9 @@
   .one-selected-btnContainer {
     justify-content: space-between;
     top: 1em;
+    }
   }
-}
+
 
 //모달 테스트용
 .one-modal {

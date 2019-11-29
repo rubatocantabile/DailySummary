@@ -4,6 +4,7 @@ import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
 
 //const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
+const config = require('../../../config');
 
 class PostsList extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class PostsList extends Component {
     const year = this.props.match.params.year;
     const month = this.props.match.params.month;
     //const day = this.props.match.params.day;
-    var url = 'http://localhost:9000/api/posts/';
+    var url = config.serverUrl +'/api/posts/';
     url += year !== '' ? year + '/' : '';
     url += month !== '' ? month + '/' : '';
     //url += day == '' ? day + '/' : '';
