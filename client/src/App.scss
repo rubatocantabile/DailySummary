@@ -37,6 +37,8 @@
 
 .one-sidebar {
   height: 100vh;
+  font-family: 'Song Myung', serif;
+  font-size: 3em;
 }
 
 .one-nav {
@@ -48,55 +50,42 @@
   background-color: #fff;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Stylish&display=swap');
 
-.logo {
-  font-size: 30px;   
-  display: block;
-  color: black;
-  font-family: 'Stylish', sans-serif;
+
+//@import url('https://fonts.googleapis.com/css?family=Stylish&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Song+Myung&display=swap');
+.one-menu-logo {
+  @media screen and (max-width:990px) {  
+    display: none;  
+    }
+  a {
+    color: black;
+    font-size: 2.5rem;
+    //font-family: 'Stylish', sans-serif;
+    font-family: 'Song Myung', serif;
+    }
   }
 
-@media screen and (min-width:1090px) {  
-.logo {
-  font-size: 30px;   
-  display: none;
-  color: black;
-  font-family: 'Stylish', sans-serif;
-  }
-};
-
-.one-header {
-  background-color: #f0f2f5;
-  display: none;  
-    .one-logo {  
-      font-size: 50px;        
-      span {
-        cursor: pointer;
-        color: black;
-        font-family: 'Stylish', sans-serif;
-        :hover{
-          transform: scale(1.5,1.5);
-        }
-      } 
-    }  
+.one-logo {  
+  font-size: 3rem;        
+  span {
+    cursor: pointer;
+    color: black;
+    //font-family: 'Stylish', sans-serif;
+    font-family: 'Song Myung', serif;
+    }
   } 
 
-@media screen and (max-width:1090px) {  
+@media screen and (min-width:990px) {  
+  .one-header {
+  background-color: #f0f2f5;
+  display: none;      
+  } 
+};
+
+@media screen and (max-width:990px) {  
   .one-header {
     display: block;
-    background-color: #f0f2f5;  
-      .one-logo {  
-        font-size: 50px;        
-        span {
-          cursor: pointer;
-          color: black;
-          font-family: 'Stylish', sans-serif;
-          :hover{
-            transform: scale(1.5,1.5);
-          }
-        } 
-      }  
     } 
 };
 
@@ -151,6 +140,19 @@
   }
 }
 
+// emotion
+.one-contents-emotion {
+  .emotion-describe {
+    font-size: 0.6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index:50;
+  }
+  .ant-btn-primary {
+    margin-top: 2em;
+  }
+}
+
 .one-post-write {
   height: 100%;
   padding: 9% 7%;
@@ -163,12 +165,16 @@
   
   .one-textarea {
     height: 100%;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.4em;
+    margin-top:0.4em;
+    @media screen {
+      
+    }
   }
 
   .one-post-btn-container {
     justify-content: space-between;
-    top: 1em;
+    top: 0.5em; 
   }
 }
 

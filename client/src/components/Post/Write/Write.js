@@ -17,7 +17,8 @@ class Write extends Component {
       affectivity: "",
     }
     this.paragraphChanged = this.paragraphChanged.bind(this)
-    this.selectedEmotion = this.selectedEmotion.bind(this)
+    // this.selectedEmotion = this.selectedEmotion.bind(this)
+    this.parentCallback = this.parentCallback(this)
   }  
   
   showModal = () => {
@@ -65,15 +66,21 @@ class Write extends Component {
       paragraph: event.target.value,
     })
   }
-
-
-  selectedEmotion(e) {
-    const affectivity = e.target.value
+  parentCallback = (e) => {
+    // 자식 컴포넌트에서 받은 값을 이용한 로직 처리
     console.log(e)
     this.setState({
-      affectivity: this.state.value 
+      affectivity: this.state.value
     })
-  }
+}
+
+  // selectedEmotion(e) {
+  //   const affectivity = e.target.value
+  //   console.log(e)
+  //   this.setState({
+  //     affectivity: this.state.value 
+  //   })
+  // }
 
   render() {
 
@@ -87,7 +94,8 @@ class Write extends Component {
           value={this.state.paragraph}
           onChange={this.paragraphChanged}  />
         <div className="one-post-btn-container flex">
-          <Emotion clickHandler={this.selectedEmotion}/>
+          {/* <Emotion clickHandler={this.selectedEmotion}/> */}
+          <Emotion clickHandler={this.parentCallback}/>
           <Button type="primary" onClick={this.showModal} className="btn btn-submit">저장</Button>
           <Modal title="글이 완성되었습니다." visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} >
 {/*  리뷰 페이지로 이동 */}

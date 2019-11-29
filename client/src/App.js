@@ -96,9 +96,11 @@ class App extends Component {
             }}
             className="one-sidebar"
           >          
-            <div className="logo">
-             <HeaderLayout className="app-logo-header"/>
-            </div>
+          <div className="one-menu-logo flex flex-center"  >
+            <Link to="/">
+              <span>일상 요약</span>
+            </Link>
+          </div>  
             <Menu theme="light" mode="inline" className="one-nav">
               <Menu.Item key="1">
                 <Link to="/post/write">
