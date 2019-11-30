@@ -12,9 +12,9 @@ router.get('/',
       {
        "postId": "1",
        "summary": "이러쿵 저러쿵",
-       "postDt": "2019-11-28, 22:00",
-       "createdDt": "2019-11-28, 23:00",
-       "modifiedDt": "2010-11-29, 23:00"
+       "postDt": "2019-11-28 22:00",
+       "createdDt": "2019-11-28 23:00",
+       "modifiedDt": "2010-11-29 23:00"
       },
       {
        "postId": "2",
@@ -33,9 +33,9 @@ router.get('/:postId',
     {
      "postId": "1",
      "summary": "이러쿵 저러쿵",
-     "postDt": "2019-11-28, 22:00",
-     "createdDt": "2019-11-28, 23:00",
-     "modifiedDt": "2010-11-29, 23:00"
+     "postDt": "2019-11-28 22:00",
+     "createdDt": "2019-11-28 23:00",
+     "modifiedDt": "2010-11-29 23:00"
     }
    )
 });

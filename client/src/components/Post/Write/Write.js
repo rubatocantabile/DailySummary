@@ -48,7 +48,7 @@ class Write extends Component {
         paragraph: "",
         affectivity: "",     
       })
-      this.props.history.push('/post')       
+      this.props.history.push('/posts')       
     })
     .catch((error) => {
       alert("에러 발생: " + error.message)
