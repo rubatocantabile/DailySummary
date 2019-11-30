@@ -1,14 +1,27 @@
-
 import React, { Component } from 'react'
+import axios from 'axios';
 import { Layout, Form, Icon, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 
 class NormalLoginForm extends Component {
+  login = (email, password) => {
+    // axios.post('~/api/auth/login', {
+    //   username,
+    //   password,
+    // }).then(res => {
+    //   localStorage.setItem(res.body.~~);
+    //   this.props.setIsLogined(true)
+    // }).catch(e => {
+    //   ~~
+    // })
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values)
+        const { mail, password } = values
+        this.login(mail, password)
       }
     });
   };
@@ -34,11 +47,9 @@ class NormalLoginForm extends Component {
               )}
             </Form.Item>
             <Form.Item>
-              <Link to="/post/write" className="btn-wrap">
-                <Button type="primary" htmlType="submit" className="login-form-button" block>
-                  로그인
-                </Button> 
-              </Link>           
+              <Button type="primary" htmlType="submit" className="login-form-button" block>
+                로그인
+              </Button>
               <div className="shortcut flex">
                 <Link to="/signup">회원가입</Link>
                 <Link to="">비밀번호 찾기</Link>
