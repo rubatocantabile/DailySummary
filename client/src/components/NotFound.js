@@ -11,7 +11,7 @@ class NotFound extends Component {
         <h2>이 페이지는 존재하지 않습니다.</h2>
         <hr />
         <Link to="/">
-          <Button type='primary'>홈으로 이동</Button>
+          <Button type='primary' >홈으로 이동</Button>
         </Link>
       </div>
     )

@@ -177,6 +177,7 @@ class App extends Component {
                 <Route path="/posts" component={PostList} />           
                 <Route path="/post/write" component={Write} />
                 <Route path="/post/:view" component={Review} />
+                <Route path="/summary/:year/:month/:day" component={Summary} />
                 <Route path="/summary" component={Summary} />
                 <Route path="/login" component={NormalLoginForm} />
                 <Route path="/setting" component={Settings} />

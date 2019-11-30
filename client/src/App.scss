@@ -180,21 +180,22 @@
 
 .one-settings {
   flex-direction: column;
+  width: 30%;
   height: 100%;
   
   .ant-form-item {
-    width: 400px;
+    width: 30%;
     transform: translateX(-14%);
   }
   
   .btn-wrap {
     .ant-form-item-control-wrapper {
-      width: 100%;
+      width: 30%;
       margin-left: 0;
     }
     
     .ant-form-item-children {
-      margin-left: 133px;
+      // margin-left: 133px;
     }
     
     .btn-submit {

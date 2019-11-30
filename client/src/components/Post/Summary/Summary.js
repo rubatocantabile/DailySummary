@@ -13,9 +13,9 @@ class Summary extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const postId = this.props.match.params.view;
-    axios.get(config.serverUrl + '/api/posts/' + postId)
+    axios.get(config.serverUrl + '/api/summary/' + postId)
     .then((response) => {
       console.log(response);
       this.setState({
@@ -24,11 +24,25 @@ class Summary extends Component {
     })
   }
 
-  onChange(event) {  
-  }
+  fetchData = () => {
+    const year = this.props.match.params.year;
+    const month = this.props.match.params.month;
+    const day = this.props.match.params.day;
+    var url = config.serverUrl +'/api/summary';
+    url += year !== '' ? year + '/' : '';
+    url += month !== '' ? month + '/' : '';
+    url += day == '' ? day + '/' : '';
+    console.log(url);
+    axios.get(url)
+    .then((response) => {
+      console.log(response);
+      this.setState({
+        data: response.data,
+      });
+    })
+  };
 
   render() {
-
     return (
       <div className="one-selected-summary">
         <div className="one-selected-date-emo-wrapper flex">

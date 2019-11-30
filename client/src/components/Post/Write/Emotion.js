@@ -2,14 +2,6 @@ import React, { Component } from 'react'
 import { Button, Icon } from 'antd'
 
 class Emotion extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      affectivity : ""
-    }
-    
-  }
-
   render() {
     return(
       <div className="one-contents-emotion">
