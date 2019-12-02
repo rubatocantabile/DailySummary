@@ -54,18 +54,13 @@ class App extends Component {
   }
 
   pickedDate = (date, dateString) => {
-    dateString = Number(dateString.replace(/-/g, ''));
-    
-    this.props.history.push({
-      pathname: '/post/write',
-      state: {date: dateString},
-    });
+    const dateStr = dateString.replace(/-/g, '');
+    const url = '/summary/' + dateStr.substring( 0, 4 ) + 
+                '/' + dateStr.substring( 4, 6 ) + 
+                '/' + dateStr.substring( 6, 8 );
+    console.log(url);
+    this.props.history.push(url);
   }
-  // onChange(event)  {
-  //   this.setState({      
-  //    })
-  // }
-  
 
   showModal = () => {
     this.setState({
@@ -147,11 +142,9 @@ class App extends Component {
                   }
                 >
                   <Menu.Item key="3">
-                    <Link to="/summary">
                       <DatePicker
                         onChange={this.pickedDate}
                       />
-                    </Link>
                   <span className="nav-text"></span>
                   </Menu.Item>
                 </SubMenu>
@@ -182,7 +175,7 @@ class App extends Component {
               <HeaderLayout />
               <Content className="Content-section-layout one-content">
                 {
-                  this.state.isLogined ? (
+                  // this.state.isLogined ? (
                     <Switch>
                       <Route exact path="/" component={Home} />
                       <Route path="/posts/:year/:month/:day" component={PostList} />
@@ -198,13 +191,13 @@ class App extends Component {
                       <Route path="/unsubscribe" component={Unsubscribe} />
                       <Route component={NotFound} />
                     </Switch>
-                  ) : (
-                    <LoginContext.Consumer>
-                      {
-                        ({setIsLogined}) => <NormalLoginForm setIsLogined={setIsLogined} />
-                      }
-                    </LoginContext.Consumer>
-                  )
+                  // ) : (
+                  //   <LoginContext.Consumer>
+                  //     {
+                  //       ({setIsLogined}) => <NormalLoginForm setIsLogined={setIsLogined} />
+                  //     }
+                  //   </LoginContext.Consumer>
+                  // )
                   }
                 }
               </Content>
