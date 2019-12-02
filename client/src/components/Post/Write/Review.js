@@ -3,6 +3,8 @@ import { Button, Modal } from 'antd';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
+const config = require('../../../config');
+
 class Review extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ class Review extends Component {
 
   handleOk = e => {
     const postId = this.props.match.params.view;
-    axios.delete('http://localhost:9000/api/posts/' + postId)
+    axios.delete(config.serverUrl +'/api/posts/' + postId)
     .then((response) => {
       alert("삭제되었습니다!")
       this.setState({
@@ -46,7 +48,7 @@ class Review extends Component {
 
   componentDidMount = () => {
     const postId = this.props.match.params.view;
-    axios.get('http://localhost:9000/api/posts/' + postId)
+    axios.get(config.serverUrl + '/api/posts/' + postId)
     .then((response) => {
       console.log(response);
       this.setState({
@@ -79,7 +81,7 @@ class Review extends Component {
               <p>정말 삭제하시겠습니까?</p>
             </Modal>
           <Button type="primary" className="btn btn-submit" >
-            <Link to="/post">목록으로</Link> 
+            목록으로
           </Button>           
         </div>
       </div>

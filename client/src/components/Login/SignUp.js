@@ -12,23 +12,25 @@ class SignUpForm extends Component {
   };
 
   handleSubmit = e => {
+    console.log(e.target);
     e.preventDefault();
     let values;
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, vals) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        values = values;
+        console.log('Received values of form: ', vals);
+        values = vals;
       }
     });
 
-    axios.post('http://localhost:9000/signup', {
-      email: '',
+    axios.post('http://localhost:9000/api/auth/user', {
+      email: values.email,
+      password: values.password,
     })
     .then((response) => {
-      console.log('success');
+      alert(response);
     })
     .catch((error) => {
-      console.error(error);
+      alert(error.response.status);
     });
   };
 

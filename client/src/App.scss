@@ -50,9 +50,6 @@
   background-color: #fff;
 }
 
-
-
-//@import url('https://fonts.googleapis.com/css?family=Stylish&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Song+Myung&display=swap');
 .one-menu-logo {
   @media screen and (max-width:990px) {  
@@ -263,7 +260,6 @@
 .one-content-notfound {
   height: 100%;
   text-align: center;
-
 }
 
 .one-selected-review , .one-selected-summary{
@@ -295,6 +291,7 @@
       background: rgb(210, 224, 236);
     }   
   }
+
   .one-selected-textarea {
     height: 80%;
     margin-bottom: 1.5em;
@@ -305,13 +302,12 @@
     font-family: 'Song Myung', serif;
     font-size: 1.1rem;
   }
+  
   .one-selected-btnContainer {
     justify-content: space-between;
     top: 1em;
-    }
   }
-
-
+}
 //모달 테스트용
 .one-modal {
   background: rgba(0, 0, 0, 0.25);

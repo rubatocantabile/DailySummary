@@ -19,7 +19,6 @@ class Write extends Component {
     }
     this.paragraphChanged = this.paragraphChanged.bind(this)
     this.selectedEmotion = this.selectedEmotion.bind(this)
-    // this.parentCallback = this.parentCallback(this)
   }  
   
   showModal = () => {
@@ -28,13 +27,6 @@ class Write extends Component {
     });
   };
 
-
-  // handleOk = e => {    
-  //   this.props.history.push('/post')
-  //   this.setState({
-  //     visible: false,   
-  //   })
-  // };
   handleOk = e => { 
     axios.post(config.serverUrl + "/api/posts", {
       paragraph: this.state.paragraph,

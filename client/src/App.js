@@ -13,6 +13,7 @@ import SignUp from './components/Login/SignUp'
 import Unsubscribe from './components/Login/Unsubscribe'
 import Review from './components/Post/Write/Review'
 import Summary from './components/Post/Summary/Summary'
+import axios from 'axios'
 
 const { Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
@@ -22,6 +23,8 @@ const LoginContext = React.createContext({
   setIsLogined: null,
 });
 
+const config = require('./config');
+
 class App extends Component {
 
   constructor(props) {
@@ -30,6 +33,7 @@ class App extends Component {
       collapsed: false,
       visible: false,
       isLogined: localStorage.getItem('token') ? true : false,
+      isLogouted: false,
     }
     // this.onChange = this.onChange.bind(this)
     this.showModal = this.showModal.bind(this)
@@ -39,6 +43,10 @@ class App extends Component {
   setIsLogined = (isLogined) => {
     this.setState({ isLogined })
   }
+
+  // setIsLogouted = (isLogouted) => {
+  //   this.setState({ isLogouted})
+  // }
 
   onCollapse = (collapsed) => {
     console.log(collapsed)
@@ -67,13 +75,21 @@ class App extends Component {
       visible: true,
     });     
   };
-  
+
   handleOk = e => {
     console.log(e);
-    this.props.history.push('/')
-    this.setState({
+    axios.post(config.serverUrl + '/api/auth/auth', {
+      password: this.state.password,
+    }).then(res => {
+      this.setState({
       visible: false,
+      isLogouted: true,
     });
+     this.props.history.push('/')
+    }).catch((error) => {
+      console.error(error)
+    })
+    console.log(this.state)
   };
   
 
@@ -159,7 +175,9 @@ class App extends Component {
                   onClick={this.showModal}
                   >
                     <Icon type="logout" />
-                    <span className="nav-text">로그아웃</span>
+                    <span className="nav-text">
+                      로그아웃
+                    </span>
                     <Modal
                       title="Basic Modal"
                       visible={this.state.visible}

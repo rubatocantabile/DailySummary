@@ -3,17 +3,21 @@ import axios from 'axios';
 import { Layout, Form, Icon, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 
+const config = require('../../config');
+
 class NormalLoginForm extends Component {
+
   login = (email, password) => {
-    // axios.post('~/api/auth/login', {
-    //   username,
-    //   password,
-    // }).then(res => {
-    //   localStorage.setItem(res.body.~~);
-    //   this.props.setIsLogined(true)
-    // }).catch(e => {
-    //   ~~
-    // })
+    axios.put(config.serverUrl + '/api/auth/user', {
+      email: this.state.email,
+      password: this.state.password,
+    }).then(res => {
+      localStorage.setItem(res.body.token);
+      this.props.setIsLogined(true)
+    }).catch((error) => {
+      console.error(error)
+    })
+    console.log(this.state)
   }
 
   handleSubmit = e => {
