@@ -32,6 +32,7 @@ class PostsList extends Component {
     url += year !== '' ? year + '/' : '';
     url += month !== '' ? month + '/' : '';
     //url += day == '' ? day + '/' : '';
+    
     console.log(url);
     axios.get(url)
     .then((response) => {

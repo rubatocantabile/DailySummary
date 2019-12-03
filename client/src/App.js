@@ -14,14 +14,11 @@ import Unsubscribe from './components/Login/Unsubscribe'
 import Review from './components/Post/Write/Review'
 import Summary from './components/Post/Summary/Summary'
 import axios from 'axios'
+//import { LoginContext } from './contexts/login'
 
 const { Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
 const { MonthPicker } = DatePicker;
-
-const LoginContext = React.createContext({
-  setIsLogined: null,
-});
 
 const config = require('./config');
 
@@ -43,10 +40,6 @@ class App extends Component {
   setIsLogined = (isLogined) => {
     this.setState({ isLogined })
   }
-
-  // setIsLogouted = (isLogouted) => {
-  //   this.setState({ isLogouted})
-  // }
 
   onCollapse = (collapsed) => {
     console.log(collapsed)
@@ -103,9 +96,9 @@ class App extends Component {
 
   render () {
     return (
-      <LoginContext.Provider value={{
-        setIsLogined: this.setIsLogined,
-      }}>
+      //<LoginContext.Provider value={{
+      //  setIsLogined: this.setIsLogined,
+      //}}>
         <Fragment>
         {/* Sider, Header, Footer는 모든 화면에 보여진다.  */}
           <Layout>
@@ -193,7 +186,7 @@ class App extends Component {
               <HeaderLayout />
               <Content className="Content-section-layout one-content">
                 {
-                  // this.state.isLogined ? (
+                  this.state.isLogined ? ( 
                     <Switch>
                       <Route exact path="/" component={Home} />
                       <Route path="/posts/:year/:month/:day" component={PostList} />
@@ -206,24 +199,20 @@ class App extends Component {
                       <Route path="/summary" component={Summary} />
                       <Route path="/setting" component={Settings} />
                       <Route path="/signup" component={SignUp} />
+                      <Route path="/login" component={NormalLoginForm} />
                       <Route path="/unsubscribe" component={Unsubscribe} />
                       <Route component={NotFound} />
                     </Switch>
-                  // ) : (
-                  //   <LoginContext.Consumer>
-                  //     {
-                  //       ({setIsLogined}) => <NormalLoginForm setIsLogined={setIsLogined} />
-                  //     }
-                  //   </LoginContext.Consumer>
-                  // )
-                  }
+                  ) : (
+                    <NormalLoginForm />
+                  )
                 }
               </Content>
-              <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+              <Footer style={{ textAlign: 'center' }}>1Sentence ©2019 Created by ...</Footer>
             </Layout>
           </Layout>
         </Fragment>
-      </LoginContext.Provider>
+      //</LoginContext.Provider>
     )          
   };
 };

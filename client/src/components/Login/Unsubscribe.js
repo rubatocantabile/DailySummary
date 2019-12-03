@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import axios from 'axios';
+
+const config = require('../../config');
+
 
 class Unsubscribe extends Component {
 
   handleClick() { 
-    alert("다시 또 만날 수 있길 바랍니다. 안녕히 가세요.")
+  //   axios.delete(config.serverUrl + "/app/auth/user", {
+  
+  //   })
+  //   .then((response => {
+  //     console.log(response.data.message)
+  //     localStorage.setItem("token", null);
+  //     alert("다시 또 만날 수 있길 바랍니다. 안녕히 가세요.")
+  //     this.setState({
+  //     })
+  //     this.props.history.push('/')
+  //   })
+  //   .catch((error) => {
+  //     alert("잠시만요!" + error.message)
+  //     console.error(error)
+  //   })
   }
   render() {
     return (
@@ -23,7 +41,7 @@ class Unsubscribe extends Component {
                 <Link to="/setting">취소</Link>
               </Button>
               <Button className="btn btn-submit" onClick={this.handleClick}>
-                <Link to="/">회원탈퇴</Link>                
+                회원탈퇴                
               </Button>
             </div>
           </div>

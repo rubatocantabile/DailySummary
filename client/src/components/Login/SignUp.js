@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { Form, Input, Select, Checkbox, Button, AutoComplete } from 'antd';
 import axios from 'axios';
 
@@ -14,27 +15,24 @@ class SignUpForm extends Component {
   handleSubmit = e => {
     console.log(e.target);
     e.preventDefault();
-    let values;
-    this.props.form.validateFieldsAndScroll((err, vals) => {
+    this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', vals);
-        values = vals;
+        console.log('Received values of form: ', values);
+        axios.post('http://localhost:9000/api/auth/user', {
+          email: values.email,
+          password: values.password,
+        })
+        .then((response) => {
+          alert(response);
+        })
+        .catch((error) => {
+          alert(error.response.status + ": " + 
+                error.response.data.message);
+        });        
       }
-    });
-
-    axios.post('http://localhost:9000/api/auth/user', {
-      email: values.email,
-      password: values.password,
-    })
-    .then((response) => {
-      alert(response);
-    })
-    .catch((error) => {
-      alert(error.response.status);
     });
   };
 
-  
   handleConfirmBlur = e => {
     const { value } = e.target;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -115,7 +113,7 @@ class SignUpForm extends Component {
             rules: [
               {
                 required: true,
-                message: '개인정보 제공에 동의해주세요.',
+                message: '비밀번호를 입력해주세요.',
               },
               {
                 validator: this.validateToNextPassword,
@@ -138,6 +136,15 @@ class SignUpForm extends Component {
         </Form.Item>
         <Form.Item {...tailFormItemLayout} className="one-checkbox-wrap">
           {getFieldDecorator('agreement', {
+            rules: [
+              {
+                required: true,
+                message: '개인정보 제공에 동의해주세요.',
+              },
+              {
+                validator: this.validateToNextPassword,
+              },
+            ],
             valuePropName: 'checked',
           })(
             <Checkbox>
@@ -149,6 +156,9 @@ class SignUpForm extends Component {
           <Button type="primary" htmlType="submit" className="btn btn-signup">
             가입
           </Button>
+          <div className="shortcut flex">
+                <Link to="/login">로그인</Link>
+          </div>
         </Form.Item>
       </Form>
     );

@@ -2,27 +2,34 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Layout, Form, Icon, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
+//import { LoginContext } from '../../contexts/login';
 
 const config = require('../../config');
 
 class NormalLoginForm extends Component {
 
   login = (email, password) => {
-    axios.put(config.serverUrl + '/api/auth/user', {
-      email: this.state.email,
-      password: this.state.password,
+    axios.post(config.serverUrl + '/api/auth/token', {
+      email: email,
+      password: password,
     }).then(res => {
-      localStorage.setItem(res.body.token);
-      this.props.setIsLogined(true)
+      console.log(res.data)
+      localStorage.setItem("token", res.data.token);
+      this.props.setIsLogined(true);
     }).catch((error) => {
-      console.error(error)
+      if (error.response) {
+        alert(error.response.status + ": " + 
+              error.response.data.message);
+      } else {
+        alert(error);
+      }
     })
-    console.log(this.state)
   }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
+      console.log(values)
       if (!err) {
         const { mail, password } = values
         this.login(mail, password)
@@ -65,6 +72,20 @@ class NormalLoginForm extends Component {
     )
   }
 }
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm)
 
-export default WrappedNormalLoginForm
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
+
+//const LoginContainer = () => (
+  //<LoginContext.Consumer>
+  //  {
+  //    ({setIsLogined}) => 
+//      <WrappedNormalLoginForm 
+  //    setIsLogined={setIsLogined} 
+ //     />
+  //  }
+  //</LoginContext.Consumer>
+//);
+
+export default {
+  WrappedNormalLoginForm,
+}
