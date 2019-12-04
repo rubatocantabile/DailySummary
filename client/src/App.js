@@ -71,30 +71,25 @@ class App extends Component {
   };
 
   handleOk = e => {
+    e.preventDefault();
+    e.stopPropagation();
     console.log(e);
-    // axios.delete(config.serverUrl + '/api/auth/auth', {
-    //   password: this.state.password,
-    // }).then(res => {
-    //   console.log(res)
     localStorage.removeItem("token")
     this.setState({
       visible: false,
       isLogined: false,
     });
     this.props.history.push('/')
-    // }).catch((error) => {
-    //   console.error(error)
-    // })
-    // console.log(this.state)
   };
   
   handleCancel = e => {
+    e.preventDefault();
+    e.stopPropagation();
     console.log('cancel clicked');
     console.log(this.state);
     this.setState({
       visible: false,
     });
-    this.props.history.push();
   };
 
   render () {
