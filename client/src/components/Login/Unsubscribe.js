@@ -7,29 +7,32 @@ const config = require('../../config');
 
 
 class Unsubscribe extends Component {
+    // state= {
+    //   password: ""
+    // }
 
   handleClick() { 
-  //   axios.delete(config.serverUrl + "/app/auth/user", {
-  
-  //   })
-  //   .then((response => {
-  //     console.log(response.data.message)
-  //     localStorage.setItem("token", null);
-  //     alert("다시 또 만날 수 있길 바랍니다. 안녕히 가세요.")
-  //     this.setState({
-  //     })
-  //     this.props.history.push('/')
-  //   })
-  //   .catch((error) => {
-  //     alert("잠시만요!" + error.message)
-  //     console.error(error)
-  //   })
+    axios.delete(config.serverUrl + "/api/auth/user", {
+      // password: this.state.password
+    })
+    .then((response) => {
+      console.log(response.data.message)
+      localStorage.removeItem("token");
+      alert("다시 또 만날 수 있길 바랍니다. 안녕히 가세요.")
+      this.setState({
+      })
+      this.props.history.push('/')
+    })
+    .catch((error) => {
+      alert("잠시만요!" + error.message)
+      console.error(error)
+    })
   }
   render() {
     return (
       <>
         <div className="one-unsubscribe flex flex-center">
-          <div class="container">
+          <div className="container">
             <p className="txt">
               <span className="line-break">회원 탈퇴하시려고요?</span>
               <span className="line-break">탈퇴하시면 지금까지 이곳에 남긴 모든 추억이 사라집니다.</span>

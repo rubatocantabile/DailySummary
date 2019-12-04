@@ -30,11 +30,11 @@ class App extends Component {
       collapsed: false,
       visible: false,
       isLogined: localStorage.getItem('token') ? true : false,
-      isLogouted: false,
     }
     // this.onChange = this.onChange.bind(this)
-    this.showModal = this.showModal.bind(this)
-    this.handleOk = this.handleOk.bind(this)
+    //this.showModal = this.showModal.bind(this)
+    //this.handleOk = this.handleOk.bind(this)
+    //this.handleCancel = this.handleCancel.bind(this)
   }
 
   setIsLogined = (isLogined) => {
@@ -64,6 +64,7 @@ class App extends Component {
   }
 
   showModal = () => {
+    console.log("showModal");
     this.setState({
       visible: true,
     });     
@@ -71,28 +72,30 @@ class App extends Component {
 
   handleOk = e => {
     console.log(e);
-    axios.post(config.serverUrl + '/api/auth/auth', {
-      password: this.state.password,
-    }).then(res => {
-      this.setState({
+    // axios.delete(config.serverUrl + '/api/auth/auth', {
+    //   password: this.state.password,
+    // }).then(res => {
+    //   console.log(res)
+    localStorage.removeItem("token")
+    this.setState({
       visible: false,
-      isLogouted: true,
+      isLogined: false,
     });
-     this.props.history.push('/')
-    }).catch((error) => {
-      console.error(error)
-    })
-    console.log(this.state)
+    this.props.history.push('/')
+    // }).catch((error) => {
+    //   console.error(error)
+    // })
+    // console.log(this.state)
   };
   
-
   handleCancel = e => {
-    console.log(e);
+    console.log('cancel clicked');
+    console.log(this.state);
     this.setState({
       visible: false,
     });
+    this.props.history.push();
   };
-
 
   render () {
     return (
@@ -185,8 +188,8 @@ class App extends Component {
             <Layout className="one-main">
               <HeaderLayout />
               <Content className="Content-section-layout one-content">
-                {
-                  this.state.isLogined ? ( 
+                {/* {
+                  this.state.isLogined ? (  */}
                     <Switch>
                       <Route exact path="/" component={Home} />
                       <Route path="/posts/:year/:month/:day" component={PostList} />
@@ -199,16 +202,16 @@ class App extends Component {
                       <Route path="/summary" component={Summary} />
                       <Route path="/setting" component={Settings} />
                       <Route path="/signup" component={SignUp} />
-                      <Route path="/login" component={NormalLoginForm} />
+                      {/* <Route path="/login" component={NormalLoginForm} /> */}
                       <Route path="/unsubscribe" component={Unsubscribe} />
                       <Route component={NotFound} />
                     </Switch>
-                  ) : (
-                    <NormalLoginForm />
-                  )
-                }
+                  {/* // ) : (
+                  //   <NormalLoginForm />
+                  // )
+                } */}
               </Content>
-              <Footer style={{ textAlign: 'center' }}>1Sentence ©2019 Created by ...</Footer>
+              <Footer style={{ textAlign: 'center' }}>ㅁㅗㅇㄱㅡㄹ ©2019 Created by 한:글</Footer>
             </Layout>
           </Layout>
         </Fragment>

@@ -70,3 +70,6 @@ code {
 .ant-layout-sider.ant-layout-sider {
   background-color: #fff;
 }
+
+/* 제목 글씨체 */
+@import url('https://fonts.googleapis.com/css?family=Single+Day&display=swap&subset=korean');

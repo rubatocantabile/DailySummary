@@ -28,9 +28,11 @@ class Write extends Component {
   };
 
   handleOk = e => { 
-    axios.post(config.serverUrl + "/api/posts", {
-      paragraph: this.state.paragraph,
-      affectivity: this.state.affectivity,
+    axios.post(config.serverUrl + "/summary", {
+      // paragraph: this.state.paragraph,
+      // affectivity: this.state.affectivity,
+      text: [this.state.paragraph],
+      emotion: Number(this.state.affectivity),
     })
     .then((response) => {       
       console.log(this.state)  
