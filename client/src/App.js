@@ -14,7 +14,7 @@ import Unsubscribe from './components/Login/Unsubscribe'
 import Review from './components/Post/Write/Review'
 import Summary from './components/Post/Summary/Summary'
 import axios from 'axios'
-//import { LoginContext } from './contexts/login'
+import { LoginContext } from './contexts/login'
 
 const { Sider, Content, Footer } = Layout
 const { SubMenu } = Menu
@@ -94,9 +94,9 @@ class App extends Component {
 
   render () {
     return (
-      //<LoginContext.Provider value={{
-      //  setIsLogined: this.setIsLogined,
-      //}}>
+      <LoginContext.Provider value={{
+        setIsLogined: this.setIsLogined,
+      }}>
         <Fragment>
         {/* Sider, Header, Footer는 모든 화면에 보여진다.  */}
           <Layout>
@@ -113,7 +113,7 @@ class App extends Component {
             >
             <div className="one-menu-logo flex flex-center"  >
               <Link to="/">
-                <span>일상 요약</span>
+                <span>몽 글</span>
               </Link>
             </div>
               <Menu theme="light" mode="inline" className="one-nav">
@@ -197,7 +197,7 @@ class App extends Component {
                       <Route path="/summary" component={Summary} />
                       <Route path="/setting" component={Settings} />
                       <Route path="/signup" component={SignUp} />
-                      {/* <Route path="/login" component={NormalLoginForm} /> */}
+                      <Route path="/login" component={NormalLoginForm} />
                       <Route path="/unsubscribe" component={Unsubscribe} />
                       <Route component={NotFound} />
                     </Switch>
@@ -210,7 +210,7 @@ class App extends Component {
             </Layout>
           </Layout>
         </Fragment>
-      //</LoginContext.Provider>
+      </LoginContext.Provider>
     )          
   };
 };

@@ -20,7 +20,7 @@ checkEmail = (email) => {
     return db
         .from('user_info')
         .select('id')
-        .where('email', '=', email)
+        .where('user_email', '=', email)
         .catch((err) => {
             console.error("checkEmail: " + err);
             return false;
@@ -34,7 +34,7 @@ router.post('/user',
         bcrypt.hash(req.body.password, 10)
         .then((hash) => {
             const user = {
-            email: req.body.email,
+            user_email: req.body.email,
             user_password: hash,
             agree_yn: req.body.agreeYn,
             };
@@ -70,7 +70,7 @@ router.post('/user',
 router.post('/token', 
     (req, res) => {
         const user = {
-            email: req.body.email,
+            user_email: req.body.email,
             user_password: req.body.password,
         };
         const secret = req.app.get('jwt-secret');
@@ -79,10 +79,10 @@ router.post('/token',
 
         db
         .from('user_info')
-        .select('id', 'email', 'user_password')
-        .where('email', '=', user.email)
+        .select('id', 'user_email', 'user_password')
+        .where('user_email', '=', user.user_email)
         .then((rows) => {
-            if (rows === null ||
+            if (! rows || rows.length == 0 ||
                 ! bcrypt.compareSync(user.user_password, rows[0]['user_password'])) {
                 res.status(401);
                 res.send({message:'email 또는 비밀번호가 틀렸습니다.'});

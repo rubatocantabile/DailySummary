@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Layout, Form, Icon, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
-//import { LoginContext } from '../../contexts/login';
+import { LoginContext } from '../../contexts/login';
 
 const config = require('../../config');
 
@@ -15,7 +15,9 @@ class NormalLoginForm extends Component {
     }).then(res => {
       console.log(res.data)
       localStorage.setItem("token", res.data.token);
-      this.props.setIsLogined(true);
+      console.log(this.props.setIsLogined)
+      //this.props.setIsLogined(true);
+      this.props.history.push("/post/write");
     }).catch((error) => {
       if (error.response) {
         alert(error.response.status + ": " + 
@@ -75,17 +77,13 @@ class NormalLoginForm extends Component {
 
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
 
-//const LoginContainer = () => (
-  //<LoginContext.Consumer>
-  //  {
-  //    ({setIsLogined}) => 
-//      <WrappedNormalLoginForm 
-  //    setIsLogined={setIsLogined} 
- //     />
-  //  }
-  //</LoginContext.Consumer>
-//);
+const LoginContainer = () => (
+  <LoginContext.Consumer>
+   {
+     ({login}) => 
+     <WrappedNormalLoginForm setIsLogined={login} />
+   }
+  </LoginContext.Consumer>
+);
 
-export default {
-  WrappedNormalLoginForm,
-}
+export default WrappedNormalLoginForm;

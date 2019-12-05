@@ -131,11 +131,17 @@ export default withRouter(Write)
 //   };
 
 //   handleOk = e => { 
-//     axios.post(config.serverUrl + "/api/posts", {
-//       paragraph: this.state.paragraph,
-//       affectivity: this.state.affectivity,
-//     })
-//     .then((response) => {       
+//     axios.post(config.serverUrl + "/api/posts", 
+//       {
+  //       paragraph: this.state.paragraph,
+  //       affectivity: this.state.affectivity,
+//      },
+//      {
+      //   headers: {
+      //       'Content-Type': 'application/json',
+  //    })
+//   헤더에 토큰 담기 로직 확인 필요.
+// //     .then((response) => {       
 //       console.log(this.state)  
 //       alert("당신의 소중한 하루가 저장되었습니다.")  
 //       this.setState({
